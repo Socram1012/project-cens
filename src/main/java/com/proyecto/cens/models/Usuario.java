@@ -1,25 +1,30 @@
 package com.proyecto.cens.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+
+@Entity
+@Table(name = "usuario")
 public class Usuario {
-    @Getter@Setter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter@Setter@Column(name = "id")
     private Long id;
-    @Getter@Setter
+    @Getter@Setter@Column(name ="nombre")
     private String nombre;
-    @Getter@Setter
+    @Getter@Setter@Column(name ="apellido")
     private String apellido;
-    @Getter@Setter
+    @Getter@Setter@Column(name ="telefono")
     private String telefono;
-    @Getter@Setter
+    @Getter@Setter@Column(name ="email")
     private String email;
-    @Getter@Setter
+    @Getter@Setter@Column(name ="contraseña")
     private String contrasena;
+    @Getter@Setter@Column(name ="rol_id")
+    private Long rol_id;
 
 
 }
