@@ -1,27 +1,25 @@
 package com.proyecto.cens.models;
 
-import javax.persistence.Column;
+import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Usuario {
+    @Getter@Setter
     private Long id;
+    @Getter@Setter
     private String nombre;
+    @Getter@Setter
     private String apellido;
+    @Getter@Setter
     private String telefono;
+    @Getter@Setter
     private String email;
+    @Getter@Setter
     private String contrasena;
-    @RequestMapping(value = "usuario/{id}")
-    public Usuario getUsuario() {
-        Usuario usuario = new Usuario();
-        usuario.setNombre(nombre);
-        usuario.setApellido(apellido);
-        usuario.setTelefono(telefono);
-        usuario.setEmail(email);
-        usuario.setContrasena(contrasena);
-    }
+
 
 }
