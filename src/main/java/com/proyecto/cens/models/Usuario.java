@@ -21,7 +21,7 @@ public class Usuario {
     private String telefono;
     @Getter@Setter@Column(name ="email")
     private String email;
-    @Getter@Setter@Column(name ="contraseña")
+    @Getter@Setter@Column(name ="contrasena")
     private String contrasena;
     @Getter@Setter@Column(name ="rol_id")
     private Long rol_id;
