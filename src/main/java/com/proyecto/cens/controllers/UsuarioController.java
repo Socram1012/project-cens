@@ -31,7 +31,7 @@ public class UsuarioController {
         return usuarioId != null;
     }
 
-    @RequestMapping(value = "api/usuarios", method = RequestMethod.POST)
+    @RequestMapping(value = "api/usuario", method = RequestMethod.POST)
     public void registrarUsuario(@RequestBody Usuario usuario) {
 
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
