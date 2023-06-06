@@ -1,13 +1,15 @@
 package com.proyecto.cens.models;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
+import lombok.ToString;
 
 
 @Entity
 @Table(name = "usuario")
+@ToString @EqualsAndHashCode
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
