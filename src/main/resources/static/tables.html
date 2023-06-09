@@ -379,23 +379,11 @@
                                 <table class="table table-bordered" id="empresas" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>Rut Empresa</th>
-                                            <th>Razon Social</th>
-                                            <th>Fecha Ingreso</th>
+                                            <th>Nombre</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
-                                    <!--   <tfoot>
-                                         <tr>
-                                               <th>Name</th>
-                                               <th>Position</th>
-                                               <th>Office</th>
-                                               <th>Age</th>
-                                               <th>Start date</th>
-                                               <th>Salary</th>
-                                           </tr>
-                                       </tfoot>-->
-                                    <tbody>
+                                    <tbody id="tablaAmbitos">
 
                                     </tbody>
                                 </table>
@@ -467,7 +455,13 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
-    <script src="js/empresas.js"></script>
+    <script src="js/ambito.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            cargarTablaAmbitos();
+        });
+    </script>
 
 </body>
 

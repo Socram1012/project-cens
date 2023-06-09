@@ -5,6 +5,7 @@ $(document).ready(function() {
 async function registrarUsuarios() {
     let datos= {};
 
+    datos.run = document.getElementById('txtRun').value;
     datos.nombre = document.getElementById('txtNombre').value;
     datos.apellido = document.getElementById('txtApellido').value;
     datos.telefono = document.getElementById('txtTelefono').value;

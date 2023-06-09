@@ -15,6 +15,8 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter@Setter@Column(name = "id")
     private Long id;
+    @Getter@Setter@Column(name = "run")
+    private String run;
     @Getter@Setter@Column(name ="nombre")
     private String nombre;
     @Getter@Setter@Column(name ="apellido")
@@ -25,8 +27,11 @@ public class Usuario {
     private String email;
     @Getter@Setter@Column(name ="contrasena")
     private String contrasena;
-    @Getter@Setter@Column(name ="rol_id")
-    private Long rol_id;
+    @Getter@Setter@Column(name ="rol")
+    private String rol = "normal";
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
 
 
 }

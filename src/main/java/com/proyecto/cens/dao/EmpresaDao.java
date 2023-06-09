@@ -6,6 +6,13 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 public interface EmpresaDao {
-    @Transactional
-    List<Empresa> getEmpresa();
+    List<Empresa> obtenerTodasLasEmpresas();
+
+    void crear(Empresa empresa);
+
+    void actualizar(Empresa empresa);
+
+    void eliminar(Empresa empresa);
+
+    Empresa obtenerPorId(Long id);
 }

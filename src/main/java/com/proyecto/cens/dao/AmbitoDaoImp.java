@@ -1,6 +1,7 @@
 package com.proyecto.cens.dao;
 
-import com.proyecto.cens.models.Empresa;
+import com.proyecto.cens.models.Ambito;
+import com.proyecto.cens.models.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -11,33 +12,34 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 @Transactional
-public class EmpresaDaoImp implements EmpresaDao {
+public class AmbitoDaoImp implements AmbitoDao {
+
     @PersistenceContext
     EntityManager entityManager;
 
     @Override
-    public List<Empresa> obtenerTodasLasEmpresas() {
+    public List<Ambito> obtenerTodosLosAmbitos() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Empresa> criteriaQuery = builder.createQuery(Empresa.class);
-        Root<Empresa> root = criteriaQuery.from(Empresa.class);
+        CriteriaQuery<Ambito> criteriaQuery = builder.createQuery(Ambito.class);
+        Root<Ambito> root = criteriaQuery.from(Ambito.class);
         criteriaQuery.select(root);
 
-        TypedQuery<Empresa> query = entityManager.createQuery(criteriaQuery);
+        TypedQuery<Ambito> query = entityManager.createQuery(criteriaQuery);
         return query.getResultList();
     }
 
     @Override
-    public void crear(Empresa empresa) { entityManager.persist(empresa); }
+    public void crear(Ambito ambito) { entityManager.persist(ambito); }
 
     @Override
-    public void actualizar(Empresa empresa) { entityManager.merge(empresa); }
+    public void actualizar(Ambito ambito) { entityManager.merge(ambito); }
 
     @Override
-    public void eliminar(Empresa empresa) { entityManager.remove(empresa); }
+    public void eliminar(Ambito ambito) { entityManager.remove(ambito); }
 
     @Override
-    public Empresa obtenerPorId(Long id) { return entityManager.find(Empresa.class, id); }
-
+    public Ambito obtenerPorId(Long id) { return entityManager.find(Ambito.class, id); }
 }
