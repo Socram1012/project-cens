@@ -370,9 +370,10 @@
                            href="#"></a>.</p>
 
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Nombre de Ámbito" id="txtNombre">
+          <input type="text" class="form-control" placeholder="Nombre de Sello" id="txtNombre">
+          <input type="text" class="form-control" placeholder="Descripción del Sello" id="txtDescripcion">
           <div class="input-group-append">
-            <a onclick="crearAmbitos()" href="#" class="btn btn-success"><ion-icon name="send-outline"></ion-icon></a>
+            <a onclick="crearSellos()" href="#" class="btn btn-success"><ion-icon name="send-outline"></ion-icon></a>
           </div>
         </div>
 
@@ -387,10 +388,11 @@
                 <thead>
                 <tr>
                   <th>Nombre</th>
+                  <th>Descripción</th>
                   <th>Acciones</th>
                 </tr>
                 </thead>
-                <tbody id="tablaAmbitos">
+                <tbody id="tablaSellos">
 
                 </tbody>
               </table>
@@ -464,11 +466,11 @@
 
 <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
 
-<script src="js/ambito.js"></script>
+<script src="js/sello.js"></script>
 
 <script>
   $(document).ready(function() {
-    cargarTablaAmbitos();
+    cargarTablaSellos();
   });
 </script>
 

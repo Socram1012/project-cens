@@ -2,36 +2,40 @@ $(document).ready(function() {
     // on ready
 });
 
-function cargarTablaAmbitos() {
-    var tabla = document.getElementById("tablaAmbitos");
+function cargarTablaSellos() {
+    var tabla = document.getElementById("tablaSellos");
     tabla.innerHTML = ""; // Limpiar la tabla
 
-    fetch('/api/tabla-ambito')
+    fetch('/api/tabla-sello')
         .then(response => response.json())
         .then(data => {
-            data.forEach(ambito => {
+            data.forEach(sello => {
                 var row = tabla.insertRow();
 
                 var nombreCell = row.insertCell(0);
-                nombreCell.innerHTML = `<input type="text" id="nombre_${ambito.id}" value="${ambito.nombre}" disabled />`;
+                nombreCell.innerHTML = `<input type="text" id="nombre_${sello.id}" value="${sello.nombre}" disabled />`;
 
-                var accionesCell = row.insertCell(1);
-                accionesCell.innerHTML = `<button class="btn btn-primary" onclick="modificarAmbito(${ambito.id})"><ion-icon name="pencil-outline"></ion-icon></button>
-                          <button class="btn btn-danger" onclick="eliminarAmbito(${ambito.id})"><ion-icon name="trash-outline"></ion-icon></button>
-                          <button class="btn btn-success" onclick="guardarCambios(${ambito.id})" id="guardar_${ambito.id}" style="display: none;"><ion-icon name="save-outline"></ion-icon></button>`;
+                var descripcionCell = row.insertCell(1);
+                descripcionCell.innerHTML = `<input type="text" id="descripcion_${sello.id}" value="${sello.descripcion}" disabled />`;
+
+                var accionesCell = row.insertCell(2);
+                accionesCell.innerHTML = `<button class="btn btn-primary" onclick="modificarSello(${sello.id})"><ion-icon name="pencil-outline"></ion-icon></button>
+                          <button class="btn btn-danger" onclick="eliminarSello(${sello.id})"><ion-icon name="trash-outline"></ion-icon></button>
+                          <button class="btn btn-success" onclick="guardarCambios(${sello.id})" id="guardar_${sello.id}" style="display: none;"><ion-icon name="save-outline"></ion-icon></button>`;
             });
         })
         .catch(error => {
-            console.error('Ocurrió un error al cargar los ámbitos:', error);
+            console.error('Ocurrió un error al cargar los sellos:', error);
         });
 }
 
-async function crearAmbitos() {
+async function crearSellos() {
     let datos= {};
 
     datos.nombre = document.getElementById('txtNombre').value;
+    datos.descripcion = document.getElementById('txtDescripcion').value;
 
-    const request = await fetch('api/ambito', {
+    const request = await fetch('api/sello', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -40,7 +44,7 @@ async function crearAmbitos() {
         body: JSON.stringify(datos)
     });
 
-    alert("El ambito se ha creado con exito!");
+    alert("El sello se ha creado con exito!");
     window.location.reload()
 
 }
@@ -78,24 +82,28 @@ async function modificarAmbito(id) {
 
 }*/
 
-function modificarAmbito(id) {
+function modificarSello(id) {
     var nombreInput = document.getElementById(`nombre_${id}`);
+    var descripcionInput = document.getElementById(`descripcion_${id}`);
     var guardarBtn = document.getElementById(`guardar_${id}`);
 
     nombreInput.disabled = false;
+    descripcionInput.disabled = false;
     guardarBtn.style.display = "inline";
 }
 
 
 function guardarCambios(id) {
     var nombreInput = document.getElementById(`nombre_${id}`);
+    var descripcionInput = document.getElementById(`descripcion_${id}`);
     var guardarBtn = document.getElementById(`guardar_${id}`);
 
     var nuevoNombre = nombreInput.value;
+    var nuevaDescripcion = descripcionInput.value;
 
-    var datos = { id: id, nombre: nuevoNombre };
+    var datos = { id: id, nombre: nuevoNombre, descripcion: nuevaDescripcion };
 
-    fetch(`/api/modificar-ambito/${id}`, {
+    fetch(`/api/modificar-sello/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -106,6 +114,7 @@ function guardarCambios(id) {
             if (response.ok) {
                 alert('Los cambios se han guardado correctamente.');
                 //window.location.href = 'modificar-ambito.html?id=' + id;
+                window.location.reload()
             } else {
                 alert('Ocurrió un error al guardar los cambios.');
             }
@@ -116,11 +125,12 @@ function guardarCambios(id) {
         });
 
     nombreInput.disabled = true;
+    descripcionInput.disabled = true;
     guardarBtn.style.display = "none";
 }
 
-async function eliminarAmbito(id) {
-    const url = `api/eliminar-ambito/${id}`;
+async function eliminarSello(id) {
+    const url = `api/eliminar-sello/${id}`;
 
     try {
         const response = await fetch(url, {
@@ -128,8 +138,8 @@ async function eliminarAmbito(id) {
         });
 
         if (response.ok) {
-            alert('El ámbito se ha eliminado con éxito.');
-            cargarTablaAmbitos(); // Vuelve a cargar la tabla para reflejar los cambios
+            alert('El sello se ha eliminado con éxito.');
+            cargarTablaSellos(); // Vuelve a cargar la tabla para reflejar los cambios
         } else {
             alert('Ocurrió un error al intentar eliminar el ámbito.');
         }
@@ -138,5 +148,3 @@ async function eliminarAmbito(id) {
         alert('Ocurrió un error en la solicitud. Consulta la consola para más detalles.');
     }
 }
-
-

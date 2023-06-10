@@ -370,9 +370,11 @@
                            href="#"></a>.</p>
 
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Nombre de Ámbito" id="txtNombre">
+          <input type="text" class="form-control" placeholder="RUT" id="txtRutEmpresa">
+          <input type="text" class="form-control" placeholder="Razón Social" id="txtRazonSocial">
+          <input type="date" class="form-control" placeholder="Fecha de Ingreso" id="txtFechaIngreso">
           <div class="input-group-append">
-            <a onclick="crearAmbitos()" href="#" class="btn btn-success"><ion-icon name="send-outline"></ion-icon></a>
+            <a onclick="crearEmpresas()" href="#" class="btn btn-success"><ion-icon name="send-outline"></ion-icon></a>
           </div>
         </div>
 
@@ -386,11 +388,13 @@
               <table class="table table-bordered" id="empresas" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                  <th>Nombre</th>
+                  <th>RUT</th>
+                  <th>Razón Social</th>
+                  <th>Fecha Ingreso</th>
                   <th>Acciones</th>
                 </tr>
                 </thead>
-                <tbody id="tablaAmbitos">
+                <tbody id="tablaEmpresas">
 
                 </tbody>
               </table>
@@ -464,11 +468,11 @@
 
 <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
 
-<script src="js/ambito.js"></script>
+<script src="js/empresas.js"></script>
 
 <script>
   $(document).ready(function() {
-    cargarTablaAmbitos();
+    cargarTablaEmpresas();
   });
 </script>
 
