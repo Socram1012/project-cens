@@ -147,7 +147,7 @@ async function eliminarEmpresa(id) {
         });
 
         if (response.ok) {
-            alert('El sello se ha eliminado con éxito.');
+            alert('La empresa se ha eliminado con éxito.');
             cargarTablaEmpresas(); // Vuelve a cargar la tabla para reflejar los cambios
         } else {
             alert('Ocurrió un error al intentar eliminar el ámbito.');
