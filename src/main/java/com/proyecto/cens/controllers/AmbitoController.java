@@ -1,18 +1,17 @@
 package com.proyecto.cens.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.proyecto.cens.dao.AmbitoDao;
 import com.proyecto.cens.models.Ambito;
+import com.proyecto.cens.models.ResultadoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
+
+import java.util.ArrayList;
 import java.util.List;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class AmbitoController {
     @Autowired
@@ -63,6 +62,23 @@ public class AmbitoController {
         return ambitoDao.obtenerTodosLosAmbitos();
 
     }
+
+    @GetMapping(value = "api/promedio")
+    @ResponseBody
+    public List<ResultadoDTO> promedioPorAmbito() {
+        List<Object[]> lista = ambitoDao.promedioPorAmbito();
+        List<ResultadoDTO> resultados = new ArrayList<>();
+
+        for (Object[] row : lista) {
+            String category = (String) row[0];
+            Double value = (Double) row[1];
+            ResultadoDTO resultadoDTO = new ResultadoDTO(category, value);
+            resultados.add(resultadoDTO);
+        }
+
+        return resultados;
+    }
+
 
 
 }

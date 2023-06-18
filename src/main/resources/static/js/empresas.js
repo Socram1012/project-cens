@@ -1,7 +1,6 @@
 $(document).ready(function() {
     // on ready
 });
-
 function cargarTablaEmpresas() {
     var tabla = document.getElementById("tablaEmpresas");
     tabla.innerHTML = ""; // Limpiar la tabla

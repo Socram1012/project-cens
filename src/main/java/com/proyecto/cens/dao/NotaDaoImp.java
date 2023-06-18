@@ -6,6 +6,8 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public class NotaDaoImp implements NotaDao {
@@ -16,4 +18,14 @@ public class NotaDaoImp implements NotaDao {
     @Override
     public void crear(Nota nota) { entityManager.persist(nota); }
 
+    /*@Override
+    @Transactional
+    public List<Nota> getNotas() {
+        String query = "SELECT a.nombre AS nombreAmbito, AVG(n.calificacion) AS promedioCalificaciones " +
+                "FROM Ambito a " +
+                "JOIN a.subambitos sa " +
+                "JOIN sa.notas n " +
+                "GROUP BY a.nombre";
+        return entityManager.createQuery(query).getResultList();
+    }*/
 }

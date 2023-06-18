@@ -3,6 +3,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "sub_ambito")
 public class Subambito {
@@ -17,7 +20,8 @@ public class Subambito {
     @ManyToOne
     @JoinColumn(name = "ambito_id")
     private Ambito ambito;
-
+    @OneToMany(mappedBy = "subambito", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Nota> nota = new ArrayList<>();
     public Subambito() { }
     public Subambito(String nombre, String comentario) {
         this.nombre = nombre;

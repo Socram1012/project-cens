@@ -21,8 +21,11 @@ public class Ambito {
     private String nombre;
     @Getter@Setter@Column(name = "sello_id")
     private String sello_id;
-    @Getter@Setter@Column(name = "entidad_evaluadora_id")
-    private String entidad_evaluadora_id;
+    @Getter@Setter
+    @ManyToOne
+    private EntidadEvaluadora entidadEvaluadora;
+
+
     @OneToMany(mappedBy = "ambito", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Subambito> subambitos = new ArrayList<>();
     public Ambito() { }

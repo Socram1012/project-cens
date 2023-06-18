@@ -17,4 +17,5 @@ public interface AmbitoDao{
     Ambito obtenerPorId(Long id);
 
 
+    List<Object[]>  promedioPorAmbito();
 }

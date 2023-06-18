@@ -1,7 +1,6 @@
 package com.proyecto.cens.dao;
 
 import com.proyecto.cens.models.Ambito;
-import com.proyecto.cens.models.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -42,4 +41,12 @@ public class AmbitoDaoImp implements AmbitoDao {
 
     @Override
     public Ambito obtenerPorId(Long id) { return entityManager.find(Ambito.class, id); }
+
+    @Override
+    public List<Object[]>  promedioPorAmbito(){
+        String sql = "SELECT a.nombre AS category, AVG(n.calificacion) AS value FROM Ambito AS a JOIN Subambito AS sa ON a.id = sa.ambito.id JOIN Nota AS n ON sa.id = n.subambito.id GROUP BY a.nombre";
+        return entityManager.createQuery(sql).getResultList();
+    }
+
 }
+

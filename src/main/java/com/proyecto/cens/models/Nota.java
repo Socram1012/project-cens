@@ -16,6 +16,9 @@ public class Nota {
     private Long id;
     @Getter@Setter@Column(name = "calificacion")
     private Integer calificacion;
+    @ManyToOne
+    @JoinColumn(name = "sub_ambito_id")
+    private Subambito subambito;
 
     public Nota() { }
 
