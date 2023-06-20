@@ -1,6 +1,7 @@
 package com.proyecto.cens.dao;
 
 import com.proyecto.cens.models.Ambito;
+import com.proyecto.cens.models.EntidadEvaluadora;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -43,10 +44,40 @@ public class AmbitoDaoImp implements AmbitoDao {
     public Ambito obtenerPorId(Long id) { return entityManager.find(Ambito.class, id); }
 
     @Override
-    public List<Object[]>  promedioPorAmbito(){
-        String sql = "SELECT a.nombre AS category, AVG(n.calificacion) AS value FROM Ambito AS a JOIN Subambito AS sa ON a.id = sa.ambito.id JOIN Nota AS n ON sa.id = n.subambito.id GROUP BY a.nombre";
-        return entityManager.createQuery(sql).getResultList();
+    public List<Object[]>  promedioPorAmbito(EntidadEvaluadora entidadEvaluadora){
+        String sql = "SELECT a.nombre AS category, AVG(n.calificacion) AS value "
+                + "FROM Ambito AS a "
+                + "JOIN Subambito AS sa ON a.id = sa.ambito.id "
+                + "JOIN Nota AS n ON sa.id = n.subambito.id "
+                + "WHERE n.subambito.ambito.entidadEvaluadora = :entidadEvaluadora "
+                + "GROUP BY a.nombre";
+
+        return entityManager.createQuery(sql)
+                .setParameter("entidadEvaluadora", entidadEvaluadora)
+                .getResultList();
     }
 
+
+    public List<Ambito> ambitoPorEntidad(EntidadEvaluadora entidadEvaluadora) {
+        String hql = "FROM Ambito a WHERE a.entidadEvaluadora.id = :entidadId";
+        return entityManager.createQuery(hql, Ambito.class)
+                .setParameter("entidadId", entidadEvaluadora.getId())
+                .getResultList();
+    }
+    @Override
+    public List<Object[]> porcentajePorAmbito(EntidadEvaluadora entidadEvaluadora) {
+        String sql = "SELECT a.nombre AS category, COUNT(n.calificacion) *1.0/ COUNT(n.procesoSello.id) AS value "
+                + "FROM Ambito AS a "
+                + "JOIN Subambito AS sa ON a.id = sa.ambito.id "
+                + "JOIN Nota AS n ON sa.id = n.subambito.id "
+                + "WHERE n.subambito.ambito.entidadEvaluadora = :entidadEvaluadora "
+                + "AND n.calificacion >= 2 "
+                + "AND n.procesoSello.fEntregaInforme IS NOT NULL "
+                + "GROUP BY a.nombre";
+
+        return entityManager.createQuery(sql)
+                .setParameter("entidadEvaluadora", entidadEvaluadora)
+                .getResultList();
+    }
 }
 

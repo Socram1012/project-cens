@@ -28,7 +28,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Area Chart Example
-axios.get('/api/promedio')
+axios.get('/api/promedio/6')
     .then(function(response) {
       var data = response.data; // Aquí obtienes los datos JSON
 
@@ -47,7 +47,7 @@ axios.get('/api/promedio')
           datasets: [{
             label: "Earnings",
             lineTension: 0.3,
-            backgroundColor: "rgb(225,80,80)",
+            backgroundColor: "rgb(89,91,93)",
             borderColor: "rgba(78, 115, 223, 1)",
             pointRadius: 3,
             pointBackgroundColor: "rgba(78, 115, 223, 1)",

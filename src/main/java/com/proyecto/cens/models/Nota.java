@@ -19,6 +19,9 @@ public class Nota {
     @ManyToOne
     @JoinColumn(name = "sub_ambito_id")
     private Subambito subambito;
+    @ManyToOne
+    @JoinColumn(name = "proceso_sello_id")
+    private ProcesoSello procesoSello;
 
     public Nota() { }
 

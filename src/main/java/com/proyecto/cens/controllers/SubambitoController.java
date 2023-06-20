@@ -74,4 +74,10 @@ public class SubambitoController {
         return subambitoDao.obtenerTodosLosSubambitos();
 
     }
+
+    @GetMapping(value = "api/obtener-por-ambito/{id}")
+    public List<Subambito> obtenerPorAmbito(@PathVariable Long id) {
+        Ambito ambito = ambitoDao.obtenerPorId(id);
+        return subambitoDao.obtenerPorAmbito(ambito);
+    }
 }

@@ -1,5 +1,6 @@
 package com.proyecto.cens.dao;
 
+import com.proyecto.cens.models.Ambito;
 import com.proyecto.cens.models.Subambito;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,4 +18,5 @@ public interface SubambitoDao {
 
     Subambito obtenerPorId(Long id);
 
+    List<Subambito> obtenerPorAmbito(Ambito ambito);
 }

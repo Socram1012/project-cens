@@ -2,7 +2,6 @@ package com.proyecto.cens.dao;
 
 import com.proyecto.cens.models.Ambito;
 import com.proyecto.cens.models.Subambito;
-import com.proyecto.cens.dao.SubambitoDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -42,5 +41,13 @@ public class SubambitoDaoImp implements SubambitoDao{
 
     @Override
     public Subambito obtenerPorId(Long id) { return entityManager.find(Subambito.class, id); }
+
+    @Override
+    public List<Subambito> obtenerPorAmbito(Ambito ambito){
+        String jpql = "FROM Subambito s WHERE s.ambito = :ambito";
+        return entityManager.createQuery(jpql, Subambito.class)
+                .setParameter("ambito", ambito)
+                .getResultList();
+    }
 
 }
