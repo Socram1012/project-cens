@@ -16,16 +16,21 @@ public class Nota {
     private Long id;
     @Getter@Setter@Column(name = "calificacion")
     private Integer calificacion;
-    @ManyToOne
-    @JoinColumn(name = "sub_ambito_id")
-    private Subambito subambito;
-    @ManyToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "proceso_sello_id")
     private ProcesoSello procesoSello;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "subambito_id")
+    private Subambito subambito;
+
     public Nota() { }
 
-    public Nota(Integer calificacion) { this.calificacion = calificacion; }
+    public Nota(Integer calificacion, ProcesoSello procesoSello, Subambito subambito) {
+        this.calificacion = calificacion;
+        this.procesoSello = procesoSello;
+        this.subambito = subambito;
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -33,5 +38,9 @@ public class Nota {
     public Integer getCalificacion() { return calificacion; }
 
     public void setCalificacion(Integer calificacion) { this.calificacion = calificacion; }
+
+    public ProcesoSello getProcesoSello() { return procesoSello; }
+
+    public void setProcesoSello(ProcesoSello procesoSello) { this.procesoSello = procesoSello; }
 
 }

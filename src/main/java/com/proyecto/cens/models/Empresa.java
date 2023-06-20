@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "empresa")
@@ -26,8 +25,8 @@ public class Empresa {
     private Date fecha_ingreso;
     @OneToOne(mappedBy = "empresa")
     private Usuario usuario;
-    @OneToMany(mappedBy = "empresa")
-    private List<ProcesoSello> procesoSellos;
+    @OneToOne(mappedBy = "empresa")
+    private ProcesoSello procesoSello;
 
     public Empresa() { }
     public Empresa(String rut_empresa, String razon_social, Date fecha_ingreso) {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <title>Ambito</title>
+  <title>Nota</title>
 
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -24,11 +24,15 @@
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Calificación</h1>
             </div>
-              <h3>Seleccione la entidad de la que quiere llenar notas</h3>
-              <select id="entidadSelect" >
-
-              </select>
-
+            <form class="user">
+              <div class="form-group">
+                <input type="number" class="form-control form-control-user" id="nmbCalificacion"
+                       placeholder="Calificaión">
+              </div>
+              <a onclick="crearNotas()" href="#" class="btn btn-primary btn-user btn-block">
+                Mandar Calificación
+              </a>
+            </form>
           </div>
 
         </div>
@@ -39,25 +43,6 @@
 
   </div>
 
-</div>
-<div class="container">
-  <div class="card o-hidden border-0 shadow-lg my-5">
-    <div class="card-body p-0">
-      <div class="row">
-        <div class="col-lg">
-          <div class="p-5">
-            <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-4">Evaluacion</h1>
-              <form action="guardarNotas.html" id="formNotas">
-                <table id="tablaSubAmbitos"></table>
-                <button id="botonGuardar" style="visibility: hidden">Guardar</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- Bootstrap core JavaScript-->
@@ -70,7 +55,7 @@
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 
-<script src="js/nota.js"></script>
-<script src="js/entidadEvaluadora.js"></script>
+<script src="js/create.js"></script>
+
 </body>
 </html>
